@@ -1,0 +1,68 @@
+-Creating database and tables  (db_1-->new created database  ; table_1 -->new created table)
+crate database db_1 from dbc as perm=100000;     --put sufficient space else will give no room error
+create table db_1.table_1(name varchar(20));
+insert into db_1.table_1 values('asas');
+
+--- Inserting date in table 
+default type 'YYYY-MM-DD'
+    or
+CAST('01-01-2000' as date format 'DD-MM-YYYY')
+
+---fastload script  (https://www.teradatapoint.com/teradata/teradata-fastload-part-2.htm):
+/*section 1*/
+.SESSIONS 1;
+
+/*Section 2*/
+.LOGON IP_Adress/username,password;
+
+/*Section 3*/
+drop table  TERADATAPOINT.STUDENT;
+drop table  TERADATAPOINT.STUDENT_E1;
+drop table  TERADATAPOINT.STUDENT_E2;
+
+CREATE MULTISET TABLE TERADATAPOINT.STUDENT ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL,
+     CHECKSUM = DEFAULT,
+     DEFAULT MERGEBLOCKRATIO
+     (
+      Roll_No CHAR(10)
+      ,First_Name VARCHAR(20)
+      ,Last_Name VARCHAR(20)
+      ,DOB DATE format 'YYYY-MM-DD'
+     )
+PRIMARY INDEX (Roll_No);
+
+/*Section 4*/
+.Record 2;
+.SET RECORD VARTEXT '|'; 
+
+/*Section 5*/
+define
+ Roll_No (VARCHAR(100))
+ ,First_Name (VARCHAR(100))
+ ,Last_Name (VARCHAR(100))
+ ,DOB VARCHAR(100),
+file=C:\Student_data\Student_info;
+ 
+/*Section 7*/
+begin loading TERADATAPOINT.STUDENT
+errorfiles TERADATAPOINT.STUDENT_E1,TERADATAPOINT.STUDENT_E2;
+
+/*Section 8*/
+Insert into TERADATAPOINT.STUDENT
+ values
+ (
+:Roll_No
+,:First_Name
+,:Last_Name
+,:DOB (format 'YYYY-MM-DD')
+);
+ 
+ /*Section 9*/
+ end loading;
+ .logoff;
+ .quit; 
+---------------
+
+Practice.PPI   --Table created
