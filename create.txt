@@ -1,5 +1,5 @@
 -Creating database and tables  (db_1-->new created database  ; table_1 -->new created table)
-crate database db_1 from dbc as perm=100000;     --put sufficient space else will give no room error
+create database db_1 from dbc as perm=100000;     --put sufficient space else will give no room error
 create table db_1.table_1(name varchar(20));
 insert into db_1.table_1 values('asas');
 
