@@ -1,0 +1,111 @@
+--Accessing the editor
+vi filename
+vi -r filename   # if the system crashes when you are redition the file, use -r to recover the file.
+vi -R filename    # opens in read only mode to prevent accidental overwriting
+
+--The vi Editor Modes
+1. Command mode – The command mode is the default mode for the vi editor. In this mode, you can run commands to delete, change, copy, and move text. You can also position the cursor, search for text strings, and exit the vi editor
+2. Input mode:
+   i – Inserts text before the cursor
+   o – Opens a new blank line below the cursor
+   a – Appends text after the cursor
+
+   I – Inserts text at the beginning of the line
+   O – Opens a new blank line above the cursor
+   A – Appends text at the end of the line
+
+Switching Between Modes
+– The default mode for the vi editor is the command mode.
+– To switch to the input mode, press i, o, or a.
+– To return to the command mode, press the Escape key.
+– In the command mode, you can save the file and quit the vi editor, and return to the shell prompt.
+
+--Moving the Cursor Within the vi Editor
+Key Sequence	Cursor Movement
+h, left arrow, or Backspace	Left one character
+j or down arrow	Down one line
+k or up arrow	Up one line
+l, right arrow, or space bar	Right (forward) one character
+w	Forward one word
+b	Back one word
+e	To the end of the current word
+$	To the end of the line
+0 (zero)	To the beginning of the line
+^	To the first non-white space character on the line
+Return	Down to the beginning of the next line
+G	Goes to the last line of the file
+1G	Goes to the first line of the file
+:n	Goes to Line n
+nG	Goes to Line n
+Control + F	Pages forward one screen
+Control + D	Scrolls down one-half screen
+Control + B	Pages back one screen
+Control + U	Scrolls up one-half screen
+Control + L	Refreshes the screen
+Control + G	Displays current buffer information
+
+--Inserting and Appending Text
+a	Appends text after the cursor
+A	Appends text at the end of the line
+i	Inserts text before the cursor
+I	Inserts text at the beginning of the line
+o	Opens a new line below the cursor
+O	Opens a new line above the cursor
+:r filename	Inserts text from another file into the current file
+
+--Text-Deletion Commands
+R	Overwrites or replaces characters on the line at and to the right of the cursor. To terminate this operation, press Escape.
+C	Changes or overwrites characters from the cursor to the end of the line
+s	Substitutes a string for a character at the cursor
+x	Deletes a character at the cursor
+dw	Deletes a word or part of the word to the right of the cursor
+dd	Deletes the line containing the cursor
+D	Deletes the line from the cursor to the right end of the line
+:n,nd	Deletes lines n -n (For example, :5,10d deletes lines 5-10.)
+
+--Edit Commands
+cw	Changes or overwrites characters at the cursor location to the end of that word
+r	Replaces the character at the cursor with one other character
+J	Joins the current line and the line below
+xp	Transposes the character at the cursor and the character to the right of the cursor
+~	Changes letter casing to uppercase or lowercase, at the cursor
+u	Undoes the previous command
+U	Undoes all changes to the current line
+.	Repeats the previous command
+
+--Search and Replace Commands
+/string	Searches forward for the string
+?string	Searches backward for the string
+n	Searches for the next occurrence of the string. Use this command after searching for a string.
+N	Searches for the previous occurrence of the string. Use this command after searching for a string.
+:%s/old/new/g	Searches for the old string and replaces it with the new string globally
+
+--Copy and Paste Commands
+yy	Yanks a copy of a line
+p	Puts yanked or deleted text under the line containing the cursor
+P	Puts yanked or deleted text before the line containing the cursor
+:n,n co n	Copies lines n -n and puts them after line n (For example, :1,3 co 5 copies lines 1-3 and puts them after line 5.)
+:n,n m n	Moves lines n -n to line n. For example, :4,6 m 8 moves lines 4-6 to line 8, line 6 becomes line 8, line 5 becomes line 7, and line 4 becomes line 6.
+
+--Save and Quit Commands
+:w	Saves the file with changes by writing to the disk
+:w new_filename	Writes the contents of the buffer to new_filename
+:wq	Saves the file with changes and quits the vi editor
+:x	Saves the file with changes and quits the vi editor
+ZZ	Saves the file with changes and quits the vi editor
+:q!	Quits without saving changes
+ZQ	Quits without saving changes
+
+--Session Customization Commands
+:set nu	Shows line numbers
+:set nonu	Hides line numbers
+:set ic	Instructs searches to ignore case
+:set noic	Instructs searches to be case-sensitive
+:set noic	Displays invisible characters, such as ^I for a Tab and $ for end-of-line characters
+:set nolist	Turns off the display of invisible characters
+:set showmode	Displays the current mode of operation
+:set noshowmode	Turns off the mode of operation display
+:set	Displays all the vi variables that are set
+:set all	Displays all vi variables and their current values
+
+
